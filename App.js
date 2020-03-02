@@ -1,19 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from './src/components/login/Login.component'
+import RecipeList from './src/components/recipelist/RecipeList.component'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import RecipeDetail from './src/components/recipedetail/RecipeDetail.component'
+import RecipeItem from './src/components/recipelist/RecipeItem.component'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+
+
+const AppNavigator = createStackNavigator(
+  {
+    Login: Login,
+    RecipeList: RecipeList,
+    RecipeItem: RecipeItem,
+    RecipeDetail : RecipeDetail
+  },
+  {
+    initialRouteName: 'Login',
+  }
+);
+
+class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default createAppContainer(AppNavigator);
